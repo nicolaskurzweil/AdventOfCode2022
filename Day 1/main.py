@@ -12,8 +12,13 @@ for row in rows:
 
 # Calculate maximum calories
 max_calories = 0
+second_max_calories = 0
+third_max_calories = 0
+
 for elf in elves:
     if sum(elf) > max_calories:
+        third_max_calories = second_max_calories
+        second_max_calories = max_calories
         max_calories = sum(elf)
 
-print("Maximum calories: " + str(max_calories))
+print("Calories of the three max Elfes: " + str(max_calories + second_max_calories + third_max_calories))
