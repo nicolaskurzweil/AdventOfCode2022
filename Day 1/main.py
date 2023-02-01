@@ -1,6 +1,7 @@
 # Read Content of input file
 f = open("Day 1/input", "r")
 rows = f.readlines()
+f.close()
 
 elves = [[]]
 
@@ -10,15 +11,12 @@ for row in rows:
     else:
         elves[len(elves) - 1].append(int(row.strip()))
 
-# Calculate maximum calories
-max_calories = 0
-second_max_calories = 0
-third_max_calories = 0
-
+# Calculate sum of calories
+index = 0
 for elf in elves:
-    if sum(elf) > max_calories:
-        third_max_calories = second_max_calories
-        second_max_calories = max_calories
-        max_calories = sum(elf)
+    elves[index] = sum(elf)
+    index += 1
 
-print("Calories of the three max Elfes: " + str(max_calories + second_max_calories + third_max_calories))
+# Get max values
+elves.sort(reverse=True)
+print (sum(elves[:3]))
