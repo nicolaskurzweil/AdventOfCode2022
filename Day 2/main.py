@@ -14,34 +14,31 @@ with open("Day 2/input", "r") as f:
 
 # Calculate score
 for row in rows:
-    points_round = 0
     row = row.split(" ")
     if len(row) == 2:
         if row[1] == "Rock":
             if row[0] == "Scissors":
-                points_round += points_won
+                total_score += points_won
             elif row[0] == "Paper":
-                points_round += points_lost
+                total_score += points_lost
             else:
-                points_round += points_draw    
-            points_round += chose_rock    
+                total_score += points_draw    
+            total_score += chose_rock    
         elif row[1] == "Paper":
             if row[0] == "Rock":
-                points_round += points_won
+                total_score += points_won
             elif row[0] == "Scissors":
-                points_round += points_lost
+                total_score += points_lost
             else:
-                points_round += points_draw
-            points_round += chose_paper       
+                total_score += points_draw
+            total_score += chose_paper       
         elif row[1] == "Scissors":
             if row[0] == "Paper":
-                points_round += points_won
+                total_score += points_won
             elif row[0] == "Rock":
-                points_round += points_lost    
+                total_score += points_lost    
             else:
-                points_round += points_draw
-            points_round += chose_scissors
-
-        total_score += points_round 
+                total_score += points_draw
+            total_score += chose_scissors
 
 print(total_score)                

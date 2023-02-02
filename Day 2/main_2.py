@@ -16,56 +16,52 @@ with open("Day 2/input", "r") as f:
 content = []    
 for row in rows:
     temp = row.replace("A", "Rock").replace("B", "Paper").replace("C", "Scissors").replace("X", "Lose").replace("Y", "Draw").replace("Z", "Win").replace("\n", "")
-    value = ""
     if "Lose" in temp and "Rock" in temp:
-        value = temp.replace("Lose", "Scissors")
+        temp = temp.replace("Lose", "Scissors")
     elif "Lose" in temp and "Paper" in temp:
-        value = temp.replace("Lose", "Rock")
+        temp = temp.replace("Lose", "Rock")
     elif "Lose" in temp and "Scissors" in temp:
-        value = temp.replace("Lose", "Paper")
+        temp = temp.replace("Lose", "Paper")
     elif "Draw" in temp and "Rock" in temp:
-        value = temp.replace("Draw", "Rock")
+        temp = temp.replace("Draw", "Rock")
     elif "Draw" in temp and "Paper" in temp:
-        value = temp.replace("Draw", "Paper")
+        temp = temp.replace("Draw", "Paper")
     elif "Draw" in temp and "Scissors" in temp:
-        value = temp.replace("Draw", "Scissors")
+        temp = temp.replace("Draw", "Scissors")
     elif "Win" in temp and "Rock" in temp:
-        value = temp.replace("Win", "Paper")
+        temp = temp.replace("Win", "Paper")
     elif "Win" in temp and "Paper" in temp:
-        value = temp.replace("Win", "Scissors")
+        temp = temp.replace("Win", "Scissors")
     elif "Win" in temp and "Scissors" in temp:
-        value = temp.replace("Win", "Rock") 
-    content.append(value)                  
+        temp = temp.replace("Win", "Rock") 
+    content.append(temp)                  
 
 # Calculate score
 for row in content:
-    points_round = 0
     row = row.split(" ")
     if row[1] == "Rock":
        if row[0] == "Scissors":
-           points_round += points_won
+           total_score += points_won
        elif row[0] == "Paper":
-           points_round += points_lost
+           total_score += points_lost
        else:
-           points_round += points_draw    
-       points_round += chose_rock    
+           total_score += points_draw    
+       total_score += chose_rock    
     elif row[1] == "Paper":
         if row[0] == "Rock":
-            points_round += points_won
+            total_score += points_won
         elif row[0] == "Scissors":
-            points_round += points_lost
+            total_score += points_lost
         else:
-            points_round += points_draw
-        points_round += chose_paper       
+            total_score += points_draw
+        total_score += chose_paper       
     elif row[1] == "Scissors":
         if row[0] == "Paper":
-            points_round += points_won
+            total_score += points_won
         elif row[0] == "Rock":
-            points_round += points_lost    
+            total_score += points_lost    
         else:
-            points_round += points_draw
-        points_round += chose_scissors
-
-    total_score += points_round 
+            total_score += points_draw
+        total_score += chose_scissors
 
 print(total_score)                
