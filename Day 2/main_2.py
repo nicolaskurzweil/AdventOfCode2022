@@ -10,36 +10,17 @@ with open("Day 2/input", "r") as f:
 content = []    
 for row in rows:
     temp = row.replace("A", "Rock").replace("B", "Paper").replace("C", "Scissors").replace("X", "Lose").replace("Y", "Draw").replace("Z", "Win").strip()
-    print(temp)
-    if "Lose" in temp and "Rock" in temp:
-        temp = temp.replace("Lose", "Scissors")
-    elif "Lose" in temp and "Paper" in temp:
-        temp = temp.replace("Lose", "Rock")
-    elif "Lose" in temp and "Scissors" in temp:
-        temp = temp.replace("Lose", "Paper")
-    elif "Draw" in temp and "Rock" in temp:
-        temp = temp.replace("Draw", "Rock")
-    elif "Draw" in temp and "Paper" in temp:
-        temp = temp.replace("Draw", "Paper")
-    elif "Draw" in temp and "Scissors" in temp:
-        temp = temp.replace("Draw", "Scissors")
-    elif "Win" in temp and "Rock" in temp:
-        temp = temp.replace("Win", "Paper")
-    elif "Win" in temp and "Paper" in temp:
-        temp = temp.replace("Win", "Scissors")
-    elif "Win" in temp and "Scissors" in temp:
-        temp = temp.replace("Win", "Rock") 
+    temp = temp.replace("Rock Lose", "Rock Scissors").replace("Paper Lose", "Paper Rock").replace("Scissors Lose", "Scissors Paper").replace("Rock Draw", "Rock Rock").replace("Paper Draw", "Paper Paper").replace("Scissors Draw", "Scissors Scissors").replace("Rock Win", "Rock Paper").replace("Paper Win", "Paper Scissors").replace("Scissors Win", "Scissors Rock")
     content.append(temp)                  
 
 # Calculate score
 for row in content:
-    row = row.split(" ")
-    if (row[1] == "Rock" and row[0] == "Scissors") or (row[1] == "Paper" and row[0] == "Rock") or (row[1] == "Scissors" and row[0] == "Paper"):
+    if row == "Scissors Rock" or row == "Rock Paper" or row == "Paper Scissors":
         total_score += points_result["Won"]
-    elif (row[1] == "Rock" and row[0] == "Paper") or (row[1] == "Paper" and row[0] == "Scissors") or (row[1] == "Scissors" and row[0] == "Rock"):
+    elif row == "Rock Scissors" or row == "Paper Rock" or row == "Scissors Paper":
         total_score += points_result["Lost"]
-    elif (row[1] == "Rock" and row[0] == "Rock") or (row[1] == "Paper" and row[0] == "Paper") or (row[1] == "Scissors" and row[0] == "Scissors"):
+    elif row == "Rock Rock" or row == "Paper Paper" or row == "Scissors Scissors":
         total_score += points_result["Draw"]
-    total_score += points_chosen[row[1]]            
+    total_score += points_chosen[row.split(" ")[1]]            
 
-print(total_score)                
+print(total_score)

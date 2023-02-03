@@ -8,14 +8,13 @@ with open("Day 2/input", "r") as f:
 
 # Calculate score
 for row in rows:
-    row = row.split(" ")
-    if len(row) == 2:
-        if (row[1] == "Rock" and row[0] == "Scissors") or (row[1] == "Paper" and row[0] == "Rock") or (row[1] == "Scissors" and row[0] == "Paper"):
+    if len(row.split(" ")) == 2:
+        if row == "Scissors Rock" or row == "Rock Paper" or row == "Paper Scissors":
             total_score += points_result["Won"]
-        elif (row[1] == "Rock" and row[0] == "Paper") or (row[1] == "Paper" and row[0] == "Scissors") or (row[1] == "Scissors" and row[0] == "Rock"):
+        elif row == "Rock Scissors" or row == "Paper Rock" or row == "Scissors Paper":
             total_score += points_result["Lost"]
-        elif (row[1] == "Rock" and row[0] == "Rock") or (row[1] == "Paper" and row[0] == "Paper") or (row[1] == "Scissors" and row[0] == "Scissors"):
+        elif row == "Rock Rock" or row == "Paper Paper" or row == "Scissors Scissors":
             total_score += points_result["Draw"]
-        total_score += points_chosen[row[1]]  
+        total_score += points_chosen[row.split(" ")[1]] 
 
-print(total_score)                
+print(total_score)
